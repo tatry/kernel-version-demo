@@ -26,7 +26,9 @@ jobs:
           # restore-keys: # optional
           # The chunk size used to split up large files during upload, in bytes
           # upload-chunk-size: # optional
+      
+      - name: Prepare runner
+        run: ./prepare_runner.sh
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Run test script
         run: ./test.sh
