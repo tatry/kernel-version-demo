@@ -28,13 +28,13 @@ jobs:
           # upload-chunk-size: # optional
       
       - name: Prepare runner
-        run: ./prepare_runner.sh
+        run: sudo ./prepare_runner.sh
       
       - name: Build VM
-        run: ./build_vm.sh
+        run: sudo ./build_vm.sh
       
       - name: Launch VM
-        run: ./install_vm.sh
+        run: sudo ./install_vm.sh
 
       - name: Run test script
         run: ./test.sh

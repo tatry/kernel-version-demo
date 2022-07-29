@@ -14,7 +14,7 @@ USER_HOME=`pwd`
 virt-install --import \
     --name "$VM_NAME" \
     --vcpu 2 \
-    --ram 2048
+    --ram 2048 \
     --disk path="$DISK_IMAGE" \
     --os-variant ubuntu20.04 \
     --network network:default \
