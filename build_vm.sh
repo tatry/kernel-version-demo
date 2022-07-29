@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Script to build virtual machine.
+# Must be run when there is no cache hit for disk.
+
+OS_TYPE="ubuntu-20.04"
+VM_NAME="inner"
+DISK_IMAGE="/var/lib/libvirt/images/$VM_NAME.qcow2"
+
+USER_NAME="ubuntu"
+USER_PASS=`mkpasswd ubuntu`
+USER_HOME=`pwd`
+
+virt-builder "$OS_TYPE" \
+    --hostname "$VM_NAME" \
+    --network \
+    --timezone "`cat /etc/timezone`" \
+    --format qcow2 -o "$DISK_IMAGE" \
+    --update \
+    --run-command "useradd -p $USER_PASS -s /bin/bash -m -d $USER_HOME -G sudo $USER_NAME" \
+    --edit '/etc/sudoers:s/^%sudo.*/%sudo	ALL=(ALL) NOPASSWD:ALL/' \
+    --edit '/etc/default/grub:s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"/' \
+    --run-command update-grub \
+    --firstboot-command "dpkg-reconfigure openssh-server"
+
+# wait for SSH server to be sure VM is ready when starting it
+
+# Enable compression on disk
+mv "$DISK_IMAGE" "$DISK_IMAGE.old"
+qemu-img convert -O qcow2 -c "$DISK_IMAGE.old" "$DISK_IMAGE"
+rm -f "$DISK_IMAGE.old"

@@ -1,16 +1,22 @@
 #!/bin/bash
 
-# Test script, run inside a VM
+# Test script
 
-uname -a
+IP=`virsh net-dhcp-leases default  | grep inner | awk '{print $5}' | awk -F '/' '{print $1}'`
+
+wait-for-it "$IP:22" -t 300 -- echo ready
+
+sshpass -p ubuntu ssh -o "StrictHostKeyChecking=no" "ubuntu@$IP" uname -a
 
 echo ""
 
-pwd
+sshpass -p ubuntu ssh "ubuntu@$IP" pwd
 
 echo ""
 
-df -h
+sshpass -p ubuntu ssh "ubuntu@$IP" df -h
+
+virsh shutdown inner
 
 # success
 exit 1

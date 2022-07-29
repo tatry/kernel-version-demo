@@ -29,6 +29,12 @@ jobs:
       
       - name: Prepare runner
         run: ./prepare_runner.sh
+      
+      - name: Build VM
+        run: ./build_vm.sh
+      
+      - name: Launch VM
+        run: ./install.sh
 
       - name: Run test script
         run: ./test.sh
