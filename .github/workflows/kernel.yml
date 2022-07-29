@@ -34,7 +34,7 @@ jobs:
         run: ./build_vm.sh
       
       - name: Launch VM
-        run: ./install.sh
+        run: ./install_vm.sh
 
       - name: Run test script
         run: ./test.sh
