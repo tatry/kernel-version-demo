@@ -17,6 +17,7 @@ virt-builder "$OS_TYPE" \
     --timezone "`cat /etc/timezone`" \
     --format qcow2 -o "$DISK_IMAGE" \
     --update \
+    --install "linux-image-5.8.0-63-generic,linux-modules-5.8.0-63-generic,linux-modules-extra-5.8.0-63-generic,linux-tools-5.8.0-63-generic" \
     --run-command "useradd -p $USER_PASS -s /bin/bash -m -d $USER_HOME -G sudo $USER_NAME" \
     --edit '/etc/sudoers:s/^%sudo.*/%sudo	ALL=(ALL) NOPASSWD:ALL/' \
     --edit '/etc/default/grub:s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"/' \

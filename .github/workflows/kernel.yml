@@ -15,22 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      #- name: Cache VM
-      #  uses: actions/cache@v3.0.5
-      #  with:
-          # A list of files, directories, and wildcard patterns to cache and restore
-          #path: 
-          # An explicit key for restoring and saving the cache
-          #key: 
-          # An ordered list of keys to use for restoring stale cache if no cache hit occurred for key. Note `cache-hit` returns false in this case.
-          # restore-keys: # optional
-          # The chunk size used to split up large files during upload, in bytes
-          # upload-chunk-size: # optional
+      - name: Cache VM
+        uses: actions/cache@v3.0.5
+        id: cache
+        with:
+          path: /var/lib/libvirt/images/inner.qcow2
+          key: kernel_5.8.0-63_v1
       
       - name: Prepare runner
         run: sudo ./prepare_runner.sh
       
       - name: Build VM
+        if: steps.cache.outputs.cache-hit != 'true'
         run: sudo ./build_vm.sh
       
       - name: Launch VM
