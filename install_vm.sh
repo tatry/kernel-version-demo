@@ -11,12 +11,6 @@ USER_NAME="ubuntu"
 USER_PASS=`mkpasswd ubuntu`
 USER_HOME=`pwd`
 
-# virsh net-list --all
-# virsh net-define ./default_network.xml
-# virsh net-autostart default
-# virsh net-start default
-# virsh net-list --all
-
 virt-install --import \
     --name "$VM_NAME" \
     --vcpu 2 \
@@ -30,5 +24,5 @@ virt-install --import \
 
 # give some time to start services, required before obtaining DHCP lease
 date
-sleep 10
+sleep 100
 date
