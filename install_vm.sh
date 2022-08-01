@@ -21,8 +21,3 @@ virt-install --import \
     --graphics none \
     --console pty,target_type=serial \
     --noautoconsole
-
-# give some time to start services, required before obtaining DHCP lease
-# date
-# sleep 100
-# date

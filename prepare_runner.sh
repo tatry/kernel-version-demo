@@ -21,14 +21,4 @@ virsh net-define ./default_network.xml
 virsh net-autostart default
 virsh net-start default
 
-echo ""
-
-free
-
-echo ""
-
-kvm-ok
-
-# kvm-ok will exit with error so override it
 exit 0
-

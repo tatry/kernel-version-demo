@@ -1,30 +1,17 @@
-#!/bin/bash -x
+#!/bin/bash -e
 
 # Test script
 
-sudo virsh list --all
-
-sudo virsh net-list --all
-
-sudo virsh net-dhcp-leases default
-
-#IP=`virsh net-dhcp-leases default | grep inner | awk '{print $5}' | awk -F '/' '{print $1}'`
 IP="192.168.122.2"
 
 wait-for-it "$IP:22" -t 300 -- echo ready
 
-sshpass -p ubuntu ssh -o "StrictHostKeyChecking=no" "ubuntu@$IP" uname -a
+set -x
 
-echo ""
+sshpass -p ubuntu ssh -o "StrictHostKeyChecking=no" "ubuntu@$IP" uname -a
 
 sshpass -p ubuntu ssh "ubuntu@$IP" pwd
 
-echo ""
-
 sshpass -p ubuntu ssh "ubuntu@$IP" df -h
 
-virsh shutdown inner
-
-# success
-exit 0
-
+sudo virsh shutdown inner
