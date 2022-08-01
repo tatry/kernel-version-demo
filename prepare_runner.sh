@@ -14,11 +14,6 @@ apt install -y \
     whois \
     sshpass
 
-# create default network in case it doesn't exists
-# virsh net-define ./default_network.xml
-# virsh net-autostart default
-# virsh net-start default
-
 echo ""
 
 free

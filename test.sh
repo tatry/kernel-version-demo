@@ -2,7 +2,11 @@
 
 # Test script
 
+sudo virsh list --all
+
 sudo virsh net-list --all
+
+sudo virsh net-dhcp-leases default
 
 IP=`sudo virsh net-dhcp-leases default  | grep inner | awk '{print $5}' | awk -F '/' '{print $1}'`
 
