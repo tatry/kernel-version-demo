@@ -33,4 +33,4 @@ jobs:
         run: sudo ./install_vm.sh
 
       - name: Run test script
-        run: sudo ./test.sh
+        run: ./test.sh

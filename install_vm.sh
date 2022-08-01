@@ -23,6 +23,6 @@ virt-install --import \
     --noautoconsole
 
 # give some time to start services, required before obtaining DHCP lease
-date
-sleep 100
-date
+# date
+# sleep 100
+# date

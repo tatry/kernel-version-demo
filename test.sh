@@ -2,13 +2,14 @@
 
 # Test script
 
-virsh list --all
+sudo virsh list --all
 
-virsh net-list --all
+sudo virsh net-list --all
 
-virsh net-dhcp-leases default
+sudo virsh net-dhcp-leases default
 
-IP=`virsh net-dhcp-leases default | grep inner | awk '{print $5}' | awk -F '/' '{print $1}'`
+#IP=`virsh net-dhcp-leases default | grep inner | awk '{print $5}' | awk -F '/' '{print $1}'`
+IP="192.168.122.2"
 
 wait-for-it "$IP:22" -t 300 -- echo ready
 

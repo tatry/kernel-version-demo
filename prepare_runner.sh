@@ -14,6 +14,13 @@ apt install -y \
     whois \
     sshpass
 
+# Re-define default network to always assign the same IP address
+virsh net-destroy default
+virsh net-undefine default
+virsh net-define ./default_network.xml
+virsh net-autostart default
+virsh net-start default
+
 echo ""
 
 free
