@@ -19,8 +19,8 @@ jobs:
         uses: actions/cache@v3.0.5
         id: cache
         with:
-          path: /var/lib/libvirt/images/inner.qcow2
-          key: kernel_5.8.0-63_v1
+          path: ./inner.qcow2
+          key: kernel_5.8.0-63_v2
       
       - name: Prepare runner
         run: sudo ./prepare_runner.sh

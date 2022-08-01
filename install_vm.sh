@@ -5,7 +5,7 @@
 
 OS_TYPE="ubuntu-20.04"
 VM_NAME="inner"
-DISK_IMAGE="/var/lib/libvirt/images/$VM_NAME.qcow2"
+DISK_IMAGE="./$VM_NAME.qcow2"
 
 USER_NAME="ubuntu"
 USER_PASS=`mkpasswd ubuntu`
