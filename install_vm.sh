@@ -23,4 +23,7 @@ virt-install --import \
     --graphics none \
     --console pty,target_type=serial \
     --noautoconsole \
+    --filesystem "`pwd`",runner \
     --boot kernel=./vmlinuz-5.8.0-63-generic,initrd=./initrd.img-5.8.0-63-generic,kernel_args="ro console=tty0 console=ttyS0,115200n8 root=/dev/vda5"
+
+# To change kernel later you have to have proper initrd and vmlinuz on local disk (not inside a VM) and fix xml definition of VM. 

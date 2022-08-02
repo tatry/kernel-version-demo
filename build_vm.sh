@@ -22,6 +22,9 @@ virt-builder "$OS_TYPE" \
     --edit '/etc/sudoers:s/^%sudo.*/%sudo	ALL=(ALL) NOPASSWD:ALL/' \
     --edit '/etc/default/grub:s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"/' \
     --run-command update-grub \
+    --upload netcfg.yaml:/etc/netplan/netcfg.yaml \
+    --run-command "chown root:root /etc/netplan/netcfg.yaml" \
+    --run-command 'echo "runner '"$USER_HOME"' 9p defaults,_netdev 0 0" >> /etc/fstab' \
     --firstboot-command "dpkg-reconfigure openssh-server"
 
 # wait for SSH server to be sure VM is ready when starting it

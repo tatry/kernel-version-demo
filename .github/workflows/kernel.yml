@@ -20,7 +20,7 @@ jobs:
         id: cache
         with:
           path: ./inner.qcow2
-          key: kernel_5.8.0-63_v2
+          key: kernel_5.8.0-63_v3
       
       - name: Prepare runner
         run: sudo ./prepare_runner.sh

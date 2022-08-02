@@ -4,7 +4,7 @@
 
 IP="192.168.122.2"
 
-wait-for-it "$IP:22" -t 300 -- echo ready
+wait-for-it "$IP:22" -t 300 -s -- echo ready
 
 set -x
 
