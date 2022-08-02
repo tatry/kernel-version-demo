@@ -16,4 +16,6 @@ sshpass -p ubuntu ssh "ubuntu@$IP" df -h
 
 sudo virsh shutdown inner
 # wait for guest to shutdown itself
-sudo virsh console inner > /dev/null
+until sudo virsh domstate inner | grep shut; do
+    sleep 5
+done
